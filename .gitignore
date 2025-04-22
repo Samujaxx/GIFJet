@@ -1,0 +1,48 @@
+# Ignore PyInstaller build folders
+build/
+dist/
+__pycache__/
+
+# Ignore Inno Setup output
+Installer/Installer/*.exe
+Installer/Output/
+
+# Ignore temporary files
+*.tmp
+*.log
+*.bak
+*.swp
+*.~
+*.DS_Store
+Thumbs.db
+
+# Ignore virtual environments
+.venv/
+venv/
+ENV/
+
+# Ignore Python artifacts
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+
+# Ignore IDE/editor config
+.vscode/
+.idea/
+*.code-workspace
+
+# Ignore system files
+*.orig
+*.rej
+
+# Ignore license backup
+LICENSE.old
+
+# Ignore test configs
+config/*.json
+!config/settings.json
+!config/last_gif.json
+
+# Ignore user favorites if generated
+config/favorites.json

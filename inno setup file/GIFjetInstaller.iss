@@ -16,7 +16,6 @@ WizardImageFile=..\assets\header.bmp
 WizardSmallImageFile=..\assets\icon.bmp
 
 [Files]
-Source: "..\dist\GIFjet.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\assets\*"; DestDir: "{app}\assets"; Flags: ignoreversion recursesubdirs
 Source: "..\config\*"; DestDir: "{app}\config"; Flags: ignoreversion recursesubdirs
 Source: "..\src\style.qss"; DestDir: "{app}"; Flags: ignoreversion

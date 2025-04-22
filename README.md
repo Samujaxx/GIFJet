@@ -15,86 +15,50 @@
 
 ---
 
-## 📦 Installation Methods
+## How to Set Up the Project
 
-### 1. 🔧 **Install via Installer (Recommended)**
-- Navigate to the `Installer/Installer/` folder.
-- Run `GIFjetSetup.exe` to install GIFjet like a regular Windows app.
-- Includes system tray access, auto-start toggle, and theme customization.
+### Requirements
 
----
+- Python 3.8 or higher
+- PyQt6
+- aiohttp
+- PyInstaller (if you want to create your own `.exe` file)
 
-### 2. 🐍 **Run from Source with PyInstaller**
-#### Prerequisites:
-- Python 3.10+
-- `pip install -r requirements.txt` (or see below for manual list)
+### 1. Install Dependencies
+Run the following command to install the required dependencies:
 
-#### Steps:
-```bash
-# Clone the repository
-git clone https://github.com/Samujaxx/GIFjet.git
-cd GIFjet
-
-# Install dependencies
+```
 pip install -r requirements.txt
-
-# Build the executable
-pyinstaller --noconfirm GIFjet.spec
 ```
 
-- The `.exe` will appear in the `dist/` folder.
-- Double-click `GIFjet.exe` to launch the widget.
+### 2. Use Inno Setup to Create the Installer
+
+1. Download and install [Inno Setup](https://jrsoftware.org/isinfo.php).
+2. Open the provided `GIFjet.iss` script in Inno Setup.
+3. Modify the paths if necessary to match your directory structure.
+4. Compile the script to generate the `setup.exe` installer.
+
+### 3. (Optional) Create a PyInstaller Executable
+
+If you prefer to create your own `.exe` file from the source code, follow these steps:
+
+1. Install PyInstaller:
+
+```
+pip install pyinstaller
+```
+
+2. Navigate to the directory containing the source code and run PyInstaller:
+
+```
+pyinstaller --onefile GIFjet.py
+```
+
+3. After the build process completes, you can find the `.exe` in the `dist/` folder.
 
 ---
 
-### 3. 📦 **Build a Custom Installer with Inno Setup**
-#### Prerequisites:
-- [Inno Setup 6.4+](https://jrsoftware.org/isinfo.php)
-
-#### Steps:
-```bash
-# Navigate to the Installer folder
-cd Installer
-
-# Open the installer script in Inno Setup
-start GIFjetInstaller.iss
-```
-
-- Compile the script with the Inno Setup IDE.
-- The installer output will be in `Installer/Installer/`.
-
----
-
-## 📁 Folder Structure
-
-```
-├── assets/          # Icons, header image, loading spinners
-├── config/          # User data: favorites, settings
-├── dist/            # PyInstaller output (.exe)
-├── Installer/       
-│   ├── Installer/   # Output of the Inno Setup compiler
-│   └── GIFjetInstaller.iss  # Inno Setup script
-├── src/             # Application source code
-│   ├── main.py
-│   ├── giphy.py
-│   ├── utils.py
-│   ├── theme.py
-│   └── giphySearchDialog.py
-├── style.qss        # Stylesheet (dark mode, themes)
-├── GIFjet.spec      # PyInstaller config
-└── README.md
-```
-
----
-
-## 🧩 Requirements
-
-If you're not using `requirements.txt`, install manually:
-```bash
-pip install PyQt6 PyQt6-WebEngine qasync requests portalocker
-```
-
----
+Now you can either use the `setup.exe` installer or run the executable directly from the `dist/` folder.
 
 ## 💡 Notes
 

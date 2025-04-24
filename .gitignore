@@ -1,12 +1,12 @@
 # Ignore PyInstaller build folders
-/src/build/
-/src/dist/
-/src/__pycache__/
-/src/dist/*.exe
+GIFJet/src/build/
+GIFJet/src/dist/
+GIFJet/src/__pycache__/
+GIFJet/src/dist/*.exe
 
 # Ignore Inno Setup output
-Installer/*.exe
-Installer/Output/
+GIFJet/Installer/*.exe
+GIFJet/Installer/Output/
 *.iss
 
 # Ignore temporary files
@@ -50,7 +50,7 @@ config/*.json
 config/favorites.json
 
 # Ignore main.spec file
-/src/main.spec
+GIFJet/src/main.spec
 
 # Ignore .gitignore file itself
 .gitignore

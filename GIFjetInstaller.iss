@@ -11,14 +11,16 @@ SolidCompression=yes
 WizardStyle=modern
 WizardResizable=yes
 UsePreviousAppDir=no
-SetupIconFile=..\assets\setupicon.ico
-WizardImageFile=..\assets\header.bmp
-WizardSmallImageFile=..\assets\icon.bmp
+SetupIconFile=assets\setupicon.ico
+WizardImageFile=assets\header.bmp
+WizardSmallImageFile=assets\icon.bmp
 
 [Files]
-Source: "..\assets\*"; DestDir: "{app}\assets"; Flags: ignoreversion recursesubdirs
-Source: "..\config\*"; DestDir: "{app}\config"; Flags: ignoreversion recursesubdirs
-Source: "..\src\style.qss"; DestDir: "{app}"; Flags: ignoreversion
+; Adjust paths to assets, config, and other files relative to the installer script location
+Source: "src\dist\main.exe"; DestDir: "{app}"; DestName: "GIFJet.exe"; Flags: ignoreversion
+Source: "assets\*"; DestDir: "{app}\assets"; Flags: ignoreversion recursesubdirs
+Source: "config\*"; DestDir: "{app}\config"; Flags: ignoreversion recursesubdirs
+Source: "src\style.qss"; DestDir: "{app}"; Flags: ignoreversion
 
 [Tasks]
 Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional icons:"
@@ -26,8 +28,8 @@ Name: "autostart"; Description: "Start GIFjet with Windows"; GroupDescription: "
 Name: "runafterinstall"; Description: "Launch GIFjet after installation"; GroupDescription: "Installation options:"
 
 [Icons]
-Name: "{group}\GIFjet"; Filename: "{app}\GIFjet.exe"
-Name: "{commondesktop}\GIFjet"; Filename: "{app}\GIFjet.exe"; Tasks: desktopicon
+Name: "{group}\GIFjet"; Filename: "{app}\GIFJet.exe"
+Name: "{commondesktop}\GIFjet"; Filename: "{app}\GIFJet.exe"; Tasks: desktopicon
 
 [Registry]
 Root: HKCU; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; \
@@ -47,12 +49,8 @@ end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
-  // Check if we are at the 'install' step and handle the "Run after install" task
-  if (CurStep = ssPostInstall) and RunAfterInstall then
-  begin
-    // Run the installed application
-    Exec(ExpandConstant('{app}\GIFjet.exe'), '', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
-  end;
+  // Do not execute the app immediately after installation
+  // We will handle execution after the "Finish" button is clicked
 end;
 
 procedure CurPageChanged(CurPageID: Integer);
@@ -61,5 +59,15 @@ begin
   if CurPageID = wpReady then
   begin
     RunAfterInstall := IsTaskSelected('runafterinstall');
+  end;
+
+  // Open the application when the "Finish" button is clicked
+  if CurPageID = wpFinished then
+  begin
+    if RunAfterInstall then
+    begin
+      // Run the installed application after the user clicks "Finish"
+      Exec(ExpandConstant('{app}\GIFjet.exe'), '', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ResultCode);
+    end;
   end;
 end;

@@ -28,6 +28,7 @@ class GiphySearchDialog(QDialog):
         self.isLoading = False
 
         self.favoritesFile = resourcePath("config/favorites.json")
+        self.lastGifFile = resourcePath("config/last_gif.json")
         self.loadFavoritesFromFile()
 
         self.setWindowTitle("Search Giphy")

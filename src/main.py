@@ -389,15 +389,15 @@ class GifWidget(QWidget):
 
     def saveLastUsedGif(self, gifUrl):
         try:
-            with open(resourcePath("../config/last_gif.json"), "w") as file:
+            with open(resourcePath("config/last_gif.json"), "w") as file:
                 json.dump({"lastUsed": gifUrl}, file)
         except Exception as e:
             print(f"Failed to save last gif: {e}")
 
     def loadLastUsedGif(self):
-        if os.path.exists(resourcePath("../config/last_gif.json")):
+        if os.path.exists(resourcePath("config/last_gif.json")):
             try:
-                with open(resourcePath("../config/last_gif.json"), "r") as file:
+                with open(resourcePath("config/last_gif.json"), "r") as file:
                     data = json.load(file)
                     lastGif = data.get("lastUsed")
                     if lastGif:

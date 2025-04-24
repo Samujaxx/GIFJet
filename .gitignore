@@ -51,3 +51,6 @@ config/favorites.json
 
 # Ignore main.spec file
 /src/main.spec
+
+# Ignore .gitignore file itself
+.gitignore
